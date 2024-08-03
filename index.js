@@ -34,6 +34,11 @@ app.get("/api/:date_string", function (req, res) {
   if (date_string.toString() === "Invalid Date") {
     res.json({ error: "Invalid Date" });
   }
+
+  if (isNaN(date.getTime())) {
+    return res.json({ error: "Invalid Date" });
+  }
+
   res.json({
     "unix": date.getTime(),
     "utc": date.toUTCString()
